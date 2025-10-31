@@ -1,0 +1,9 @@
+[
+  {"amostra": "A1", "unidades_inspecionadas": 5, "total_defeitos": 12},
+  {"amostra": "A2", "unidades_inspecionadas": 5, "total_defeitos": 10},
+  {"amostra": "A3", "unidades_inspecionadas": 4, "total_defeitos": 9},
+  {"amostra": "A4", "unidades_inspecionadas": 4, "total_defeitos": 7},
+  {"amostra": "A5", "unidades_inspecionadas": 5, "total_defeitos": 11},
+  {"amostra": "A6", "unidades_inspecionadas": 6, "total_defeitos": 20},
+  {"amostra": "A7", "unidades_inspecionadas": 6, "total_defeitos": 14}
+]

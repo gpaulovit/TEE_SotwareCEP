@@ -1,0 +1,13 @@
+{
+  "dados_simulado_prova_1": {
+    "LSE": 4.94,
+    "LIE": 4.92,
+    "valor_prob_arbitrario": 4.952,
+    "nome_processo": "Diâmetro do Eixo Principal"
+  },
+  "outro_processo_exemplo": {
+    "LSE": 10.0,
+    "LIE": 9.8,
+    "nome_processo": "Questão 2.3"
+  }
+}

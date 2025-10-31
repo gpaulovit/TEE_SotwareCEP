@@ -1,0 +1,53 @@
+{
+    "tipo_grafico": "X-R",
+    "n_amostra": 5,
+    "X_barra_barra": 4.920869999999999,
+    "R_barra": 0.060699999999999976,
+    "constantes_usadas": {
+        "A2": 0.577,
+        "D3": 0.0,
+        "D4": 2.114
+    },
+    "limites_X_barra": {
+        "LSC": 4.955893899999999,
+        "LM": 4.920869999999999,
+        "LIC": 4.885846099999999
+    },
+    "limites_R": {
+        "LSC": 0.12831979999999996,
+        "LM": 0.060699999999999976,
+        "LIC": 0.0
+    },
+    "analise_capacidade": {
+        "sigma_estimado": 0.026096302665520196,
+        "especificacoes": {
+            "LSE": 4.94,
+            "LIE": 4.92
+        },
+        "Cp": 0.12773201537616993,
+        "Cpk": 0.011112685337714243,
+        "Cps": 0.24435134541462564,
+        "Cpi": 0.011112685337714243,
+        "probabilidade_curto_prazo_st": {
+            "prob_sucesso": 0.2815347605783476,
+            "prob_defeito_total": 0.7184652394216524,
+            "prob_defeito_abaixo_LIE": 0.48670250315282193,
+            "prob_defeito_acima_LSE": 0.23176273626883048,
+            "ppm_st": 718465.2394216524,
+            "Z_level_st": 0.9217117428529379
+        },
+        "probabilidade_longo_prazo_lt": {
+            "media_deslocada_lt": 4.960014453998279,
+            "prob_sucesso_lt": 0.15896053067768667,
+            "prob_defeito_total_lt": 0.8410394693223133,
+            "ppm_lt": 841039.4693223133,
+            "Z_level_lt": 0.03333805601314273
+        },
+        "confiabilidade_st_1_menos_F": 0.2815347605783476,
+        "probabilidade_arbitraria_q2_3": {
+            "valor_referencia": 4.952,
+            "prob_acima_desse_valor": 0.11645636679690674,
+            "ppm_acima_desse_valor": 116456.36679690675
+        }
+    }
+}
