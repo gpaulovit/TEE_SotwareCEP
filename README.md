@@ -27,7 +27,6 @@ Antes de executar o `main.py`, você **precisa** configurar os arquivos de entra
     * Verifique se este arquivo contém as constantes (d2, A2, D3, D4) corretas para o tamanho da sua amostra (`n`). A chave do objeto deve ser o `n` (como string).
 
 2.  **Especificações do Processo (`configuracao/especificacoes.json`):**
-    * Este é o arquivo mais importante para as Questões 2.
     * `LSE`: Limite Superior de Especificação (Ex: `4.94`).
     * `LIE`: Limite Inferior de Especificação (Ex: `4.92`).
     * `valor_prob_arbitrario`: O valor (Ex: `4.952`) para o qual você quer calcular $P(X > valor)$.
