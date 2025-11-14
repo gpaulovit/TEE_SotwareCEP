@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monitor de Luminosidade</title>
+  <style>
+    :root {
+      --bg-page: #f3f4f6;
+      --card-bg: #ffffff;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --accent-alta: #16a34a;
+      --accent-baixa: #ea580c;
+      --border-soft: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #e5f0ff, #f3f4f6 55%);
+      color: var(--text-main);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.12);
+      border: 1px solid var(--border-soft);
+      padding: 22px 20px 18px;
+      width: 92%;
+      max-width: 430px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .title-block h1 {
+      margin: 0;
+      font-size: 1.15rem;
+      letter-spacing: 0.03em;
+    }
+
+    .title-block p {
+      margin: 4px 0 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 7px rgba(34, 197, 94, 0.9);
+    }
+
+    .content {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .gauge-wrapper {
+      flex: 0 0 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gauge {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 180deg,
+        #f97316 0deg,
+        #f97316 120deg,
+        #22c55e 120deg,
+        #22c55e 360deg
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+    }
+
+    .gauge-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .gauge-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .gauge-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .gauge-icon {
+      font-size: 1.4rem;
+    }
+
+    .info {
+      flex: 1 1 150px;
+    }
+
+    .estado-texto {
+      font-size: 0.95rem;
+      margin: 0 0 6px;
+    }
+
+    .descricao {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0 0 10px;
+      min-height: 2.1em;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #4b5563;
+    }
+
+    .footer {
+      margin-top: 14px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .highlight-alta {
+      color: var(--accent-alta);
+    }
+
+    .highlight-baixa {
+      color: var(--accent-baixa);
+    }
+
+    @media (max-width: 420px) {
+      .content {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .gauge-wrapper {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <div class="title-block">
+        <h1>Monitor de Luminosidade</h1>
+        <p>Leitura em tempo real do ambiente</p>
+      </div>
+      <div class="pill">
+        <span class="pill-dot"></span>
+        ONLINE
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="gauge-wrapper">
+        <div class="gauge" id="gauge">
+          <div class="gauge-inner">
+            <div class="gauge-label">Nível</div>
+            <div class="gauge-value" id="gaugeValor">--</div>
+            <div class="gauge-icon" id="gaugeIcon">☀️</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info">
+        <p class="estado-texto" id="estadoTexto">Aguardando leitura...</p>
+        <p class="descricao" id="descricao">
+          Posicione o sensor próximo ao ambiente que deseja monitorar.
+        </p>
+
+        <div class="tag-row">
+          <div class="tag">Alta luminosidade → ambiente claro</div>
+          <div class="tag">Baixa luminosidade → ambiente escuro</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Atualização automática a cada 1s</span>
+      <span>ESP32 + sensor LDR digital</span>
+    </div>
+  </div>
+
+  <script>
+    function interpretarResposta(textoOuJson) {
+      // Tenta interpretar como JSON primeiro
+      try {
+        const data = JSON.parse(textoOuJson);
+        if (data && data.nivel) {
+          return {
+            nivel: data.nivel, // "alta" ou "baixa"
+            descricao:
+              data.descricao ||
+              (data.nivel === "alta"
+                ? "O ambiente está bem iluminado."
+                : "O ambiente está com pouca luz."),
+          };
+        }
+      } catch (e) {
+        // não era JSON, cai pro texto bruto
+      }
+
+      // Interpretação para texto simples ("Claro", "Escuro", etc.)
+      const txt = textoOuJson.toLowerCase();
+      if (txt.includes("claro")) {
+        return {
+          nivel: "alta",
+          descricao: "O ambiente está bem iluminado.",
+        };
+      } else {
+        return {
+          nivel: "baixa",
+          descricao: "O ambiente está com baixa luminosidade.",
+        };
+      }
+    }
+
+    function aplicarEstado(estado) {
+      const gaugeValor = document.getElementById("gaugeValor");
+      const gaugeIcon = document.getElementById("gaugeIcon");
+      const estadoTexto = document.getElementById("estadoTexto");
+      const descricao = document.getElementById("descricao");
+      const gauge = document.getElementById("gauge");
+
+      if (estado.nivel === "alta") {
+        gaugeValor.textContent = "Alta";
+        gaugeValor.classList.remove("highlight-baixa");
+        gaugeValor.classList.add("highlight-alta");
+
+        estadoTexto.innerHTML =
+          '<span class="highlight-alta">Alta luminosidade</span> detectada.';
+        descricao.textContent = estado.descricao;
+
+        gaugeIcon.textContent = "☀️";
+        gauge.style.background =
+          "conic-gradient(from 180deg, #86efac 0deg, #16a34a 260deg, #e5e7eb 260deg, #e5e7eb 360deg)";
+      } else {
+        gaugeValor.textContent = "Baixa";
+        gaugeValor.classList.remove("highlight-alta");
+        gaugeValor.classList.add("highlight-baixa");
+
+        estadoTexto.innerHTML =
+          '<span class="highlight-baixa">Baixa luminosidade</span> detectada.';
+        descricao.textContent = estado.descricao;
+
+        gaugeIcon.textContent = "🌙";
+        gauge.style.background =
+          "conic-gradient(from 180deg, #fed7aa 0deg, #ea580c 220deg, #e5e7eb 220deg, #e5e7eb 360deg)";
+      }
+    }
+
+    function atualizar() {
+      fetch("/estado")
+        .then((resp) => resp.text())
+        .then((txt) => {
+          const estado = interpretarResposta(txt);
+          aplicarEstado(estado);
+        })
+        .catch((err) => {
+          document.getElementById("gaugeValor").textContent = "--";
+          document.getElementById("estadoTexto").textContent =
+            "Não foi possível ler o estado do sensor.";
+          document.getElementById("descricao").textContent =
+            "Verifique se a placa está ligada e conectada corretamente.";
+        });
+    }
+
+    atualizar();
+    setInterval(atualizar, 1000);
+  </script>
+</body>
+</html>
